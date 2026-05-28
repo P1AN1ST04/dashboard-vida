@@ -1,0 +1,25 @@
+# Cloudflare Pages — headers globales y por path.
+# Documentación: https://developers.cloudflare.com/pages/configuration/headers/
+
+# Headers de seguridad para todo el site
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Assets con hash en el nombre → cache forever
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Service worker — nunca cachear (debe poder actualizarse en cada carga)
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Manifest PWA + index.html — short cache para que cambios lleguen rápido
+/manifest.webmanifest
+  Cache-Control: public, max-age=600
+/
+  Cache-Control: public, max-age=600
+/index.html
+  Cache-Control: public, max-age=600

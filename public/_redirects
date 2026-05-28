@@ -1,0 +1,4 @@
+# Cloudflare Pages — SPA fallback.
+# Cualquier ruta que no exista como archivo estático cae a index.html
+# para que React Router / view hash fragments funcionen.
+/*    /index.html   200
